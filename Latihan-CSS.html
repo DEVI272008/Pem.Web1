@@ -1,0 +1,96 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Card</title>
+    <style>
+        body {
+            font-family: 'Poppiens', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .card{
+            background: linear-gradient(135deg,#e292eb,#9821a5);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 320px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .card img {
+        width: 100%;
+        height: auto;
+        border-bottom: 2px solid #fff;
+        }
+
+        .card-content {
+        padding: 20px;
+        }
+
+        .card-title {
+        font-size: 1.7em;
+        margin: 0 0 10px;
+        color: #fff;
+        }
+
+        .card-description {
+        color: #f4f4f4;
+        font-size: 1em;
+        margin: 0 0 15px;
+        }
+
+        .card-price {
+        font-size: 1.3em;
+        margin: 0 0 20px;
+        color: #700606;
+        }
+
+        .card button {
+            background: linear-gradient(135deg, hsla(313, 86%, 45%, 0.812), #d519a0);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .card button:hover {
+            background: linear-gradient(135deg, #a307eb, #ba57ce);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+</body>
+    <div class="card">     
+        <img src="c:\Users\MyBook Hype\Pictures\Screenshots\tas.jpg" alt="Product Image">
+        <div class="card-content">
+            <h2 class="card-title"> Tas Ransel Backpack Korean Fashion</h2>
+            <br>
+            <p class="card-description">Tas ransel ini memiliki desain korea dengan perpaduan warnanya 
+                                        yang menarik Serta Bahannya awet, lembut dan tidak mudah robek.
+            <br><br>
+                                        <b>Ayo Buruan Chekout Secepatnya Sebelum Kehabisan Ditambah Dapat gantungan tas juga.</b></p>
+            <br>
+            <p class="card-price">Rp 40.000,00</p> 
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</body>
+</html>
+

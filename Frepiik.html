@@ -1,0 +1,161 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+// import 'package:flutter_demo/presentation/home_page.dart';
+// import 'package:flutter_demo/presentation/register_page.dart';
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  bool _isPasswordVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Jika data pengguna sudah tersimpan, arahkan ke halaman HomePage.
+      if (_isUserLoggedIn()) {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const LoginPage()));
+      }
+    });
+  }
+
+  bool _isUserLoggedIn() {
+    // Cek apakah pengguna sudah login sebelumnya.
+    // Ini bisa dilakukan dengan menggunakan shared preferences atau mekanisme lain.
+    // Untuk contoh ini, kita return false karena data statis.
+    return false;
+  }
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Login"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Image.network(
+                "https://img.freepik.com/free-vector/charity-concept-illustration_114360-2634.jpg?t=st=1722503019~exp=1722506619~hmac=51ecb8b7fee994b789756eb1ff09d132ee7235b330dd1faafc76e692649389d8&w=740",
+                width: 200,
+                height: 200,
+              ),
+              TextFormField(
+                controller: _emailController,
+                decoration: const InputDecoration(labelText: 'Email'),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Email tidak boleh kosong";
+                  }
+                  if (value.contains("0")) {
+                    return "Email tidak boleh mengandung '0'";
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  suffixIcon: GestureDetector(
+                    child: _isPasswordVisible
+                        ? const Icon(Icons.visibility_off)
+                        : const Icon(Icons.visibility),
+                    onTap: () {
+                      setState(() {
+                        _isPasswordVisible = !_isPasswordVisible;
+                      });
+                    },
+                  ),
+                ),
+                obscureText: !_isPasswordVisible,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Password tidak boleh kosong";
+                  }
+                  if (value.length <8) {
+                    return "Password minimal 8 karakter";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              FilledButton(
+                onPressed: () {
+                  final isValid = _formKey.currentState?.validate() ?? false;
+                  if (isValid) {
+                    final email = _emailController.text;
+                    final password = _passwordController.text;
+
+                    // Logika autentikasi sederhana tanpa Firebase
+                    if (email == "admin@example.com" &&
+                        password == "password123") {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()));
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text("Login Gagal"),
+                          content: const Text("Email atau password salah"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("OK"),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                  }
+                },
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size.fromHeight(54),
+                ),
+                child: const Text("Login"),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              const Text("Tidak punya akun?"),
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const LoginPage();
+                        },
+                      ),
+                    );
+                  },
+                  child: const Text("Daftar baru")),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

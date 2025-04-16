@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>punya saya</title>
+</head>
+  <body>
+    <center>
+      <form action="" name="myForm">
+        <label for="wn">Masukan absen siswa</label> <br />
+        <input type="text" name="wn" id="wn" /> <br /><br />
+
+        <button type="button" name="simpan" onclick="greeting()">Simpan</button>
+      </form>
+
+      <p id="cetak"></p>
+    </center>
+
+    <script>
+      function greeting() {
+        let greeting = "Bukan Siswa RPL 4";
+        let myForm = document.myForm;
+        let wn = myForm.wn.value;
+
+        if (wn == "1") {
+          greeting = "nova";
+        } else if (wn == "2") {
+          greeting = "nur alimah";
+        } else if (wn == "3") {
+          greeting = "nur zahra";
+        } else if (wn == "4") {
+            greeting = "lovely";
+        } else if (wn == "5") {
+            greeting = "Devi";
+        } else {
+          greeting;
+        }
+
+        document.getElementById("cetak").innerHTML = greeting;
+      }
+    </script>
+  </body>
+</html>
+	
